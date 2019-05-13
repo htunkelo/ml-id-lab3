@@ -76,7 +76,7 @@ fm_predictor = sagemaker.predictor.RealTimePredictor(endpoint_name,
                                                      deserializer=json_deserializer,
                                                      content_type='application/json',
                                                      sagemaker_session=sagemaker.Session())
-nb_predictions = 10
+nb_predictions = 100
 offset = 1000
 
 # Run some predictions
@@ -92,6 +92,7 @@ for index in list(range(nb_predictions)):
         matches = matches + 1
 
 match_rate = matches / nb_predictions
+print("Correct: {} / {}".format(matches, nb_predictions))
 print("Match Rate: %s" % (match_rate))
 
 # If match rate is not 80% we throw an error that will break the codepipeline test stage
